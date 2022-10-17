@@ -1,0 +1,11 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker login --username=$$USERNAME --password=$$PASSWORD']
+  secretEnv: ['USERNAME', 'PASSWORD']
+availableSecrets:
+  secretManager:
+  - versionName: projects/gemenielabs-stocks/secrets/sm-snow-username/versions/latest
+  env:  'USERNAME'
+  - versionName: projects/gemenielabs-stocks/secrets/sm-snow-pass/versions/latest
+  env:  'PASSWORD'
