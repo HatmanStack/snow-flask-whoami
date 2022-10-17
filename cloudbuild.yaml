@@ -12,6 +12,6 @@ steps:
    - '--image'
    - 'gcr.io/$PROJECT_ID/snowwebapp:$COMMIT_SHA'
    - '--region'
-   - '27'
+   - 'us-central1'
  images:
  - 'gcr.io/$PROJECT_ID/snowwebapp:$COMMIT_SHA'
