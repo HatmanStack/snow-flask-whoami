@@ -1,13 +1,13 @@
 steps:         
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myimage', '.'] 
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/snow-web-app/myimage', '.'] 
    
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myimage']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/snow-web-app/myimage']
     
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'snow-web-app', '--image', 
-           'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myimage',
+           'us-central1-docker.pkg.dev/$PROJECT_ID/snow-web-app/myimage',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']   
 images:
