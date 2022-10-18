@@ -1,5 +1,4 @@
 
-from tkinter import CENTER
 from flask import Flask, render_template, request
 from snowflake import connector
 import pandas as pd
@@ -22,7 +21,7 @@ def submitpage():
 
 @app.route('/HardData')
 def hardData():
-    dfhtml = updateRows().to_html(justify=CENTER)
+    dfhtml = updateRows().to_html()
     return render_template('index.html', dfhtml=dfhtml)
 
 @app.route('/thanks4submit', methods=["POST"])
