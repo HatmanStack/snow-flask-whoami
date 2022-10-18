@@ -12,7 +12,7 @@ steps:
     args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"] 
          
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}snow-web-app:${SHORT_SHA}']       
+    args: ['push',  'us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/snow-web-app:${SHORT_SHA}']       
    
   
   - name: google/cloud-sdk
@@ -30,7 +30,6 @@ artifacts:
 images:
   - us-central1-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/snow-web-app:${SHORT_SHA}
   
-substitutions:
-  _TAG: us-central1-docker.pkg.dev/gemenielabs-stocks/snow-web-app:ae1eb11
+
       
 
