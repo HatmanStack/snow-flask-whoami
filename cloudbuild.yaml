@@ -1,6 +1,6 @@
 steps:         
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myimage', '.']       
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myimage', '.'] 
    
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myimage']
@@ -11,7 +11,7 @@ steps:
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']   
 images:
-  - us-central1-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/myimage
+  - us-central1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/myimage
   
 
       
