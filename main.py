@@ -38,17 +38,14 @@ def thanks4submit():
 #snowflake
 cnx = connector.connect(
     account='wn59980.us-central1.gcp',
-    user=,
-    password=,
+    user= os.environ.get('USERNAME'),
+    password= os.environ.get('PASSWORD'),
     warehouse='COMPUTE_WH',
     database='DEMO_DB',
     schema='PUBLIC',
     role='SYSADMIN'
 )
 
-
-print(os.environ.get("USERNAME", "Not Found")[:5], "...")
-print(os.environ.get("PASSWORD", "Not Found")[:5], "...")
 
 def insertRow(address, name):
     cur = cnx.cursor()
