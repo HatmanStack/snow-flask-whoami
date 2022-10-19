@@ -3,30 +3,48 @@
   <head>
     <title>Address Chart</title>
     <meta charset="utf-8" />
+    
 
     <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
 
-    <style media="screen">
-      /* Add space between Vega-Embed links  */
-      .vega-actions a {
-        margin-right: 5px;
+    <style>
+      body{
+        background-color: black;
+      }
+      a{
+        text-decoration: none;
+        color:steelblue;
       }
     </style>
   </head>
   <body>
-    <h1 style="text-align: center;">Name Check</h1>
+    <h1 style="text-align: center;color: white;">Name Check</h1>
     <!-- Container for the visualization -->
-    <div id="vis"></div>
+    
 
-  
+    <table style="width: 100%;">
+      <tr>
+          <td><p style="text-align: center;"><a href="https://www.gemenielabs.com"><img src="https://www.gemenielabs.com/wp-content/uploads/2022/08/logo.svg" alt="Gemenie Labs"></a></p>
+            <br>
+            <p style="text-align: center;"><img class="center" src="https://www.gemenielabs.com/wp-content/uploads/2022/10/bar.svg" alt=""></p>
+            <br>
+            <br>
+            <h2 style="text-align:center;"><a href="/Submit">Submit Address</a></h2>
+            <br>
+            <h2 style="text-align:center;"><a  href="/HardData">Hard Data</a></h2></td>
+          <td><div id="vis"></div></td>
+      </tr>
+  </table>
     <script>
  var vlSpec = {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "width": 1200,
   "height": 700,
   "padding": 5,
+  
+  
 
   "data": [
     {
@@ -64,8 +82,33 @@
   ],
 
   "axes": [
-    { "orient": "bottom", "scale": "xscale" },
-    { "orient": "left", "scale": "yscale" }
+    { "orient": "bottom",
+      "title" : "NAME",
+      "scale": "xscale",
+      "labelColor": "white",
+      "titlePadding" : 20,
+      "encode": {
+        "title":{
+        "update": {
+          "fontSize": {"value": 18},
+          "fill" : {"value": "white"}
+          }
+        }
+      }
+    },
+    { "orient": "left",
+     "title" : "COUNT",
+     "scale": "yscale",
+     "labelColor": "white",
+     "encode": {
+        "title":{
+        "update": {
+          "fontSize": {"value": 18},
+          "fill" : {"value": "white"}
+          }
+        }
+      }
+    }
   ],
 
   "marks": [
@@ -74,17 +117,19 @@
       "from": {"data":"table"},
       "encode": {
         "enter": {
-          "x": {"scale": "xscale", "field": "NAME"},
+          "x": {"scale": "xscale", "field": "NAME", "label":{"fill":{"value":"white"}}},
           "width": {"scale": "xscale", "band": 1},
           "y": {"scale": "yscale", "field": "vote"},
           "y2": {"scale": "yscale", "value": 0}
         },
         "update": {
           "fill": {"value": "steelblue"}
+          
         },
         "hover": {
           "fill": {"value": "red"}
         }
+     
       }
     },
     {
@@ -92,8 +137,7 @@
       "encode": {
         "enter": {
           "align": {"value": "center"},
-          "baseline": {"value": "bottom"},
-          "fill": {"value": "#333"}
+          "baseline": {"value": "bottom"}
         },
         "update": {
           "x": {"scale": "xscale", "signal": "tooltip.category", "band": 1},
@@ -107,21 +151,11 @@
       }
     }
   ]
+  
 }
-vegaEmbed('#vis', vlSpec).then(res => { var view = res.view;});
+vegaEmbed('#vis', vlSpec);
 </script>
-<table style="width: 100%;">
-    <tr>
-        <td><div style = "display: block;" id="vis"></div></td>
-    </tr>
-</table>
- 
-    
-  <br/>
-<h2 style="text-align:center;"><a href="/Submit">Submit Address</a></h2></br></br>
-<p style="text-align: center;"><a href="https://www.gemenielabs.com"><img src="https://www.gemenielabs.com/wp-content/uploads/2022/08/logo.svg" alt="Gemenie Labs"></a></p>"
-<br>
-<br>
-<h2 style="text-align:center;"><a  href="/HardData">Hard Data</a></h2>
+   <br/>
+
   </body>
 </html>
