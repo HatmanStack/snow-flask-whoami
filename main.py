@@ -36,7 +36,7 @@ def thanks4submit():
 #snowflake
 cnx = connector.connect(
     account='wn59980.us-central1.gcp',
-    user= os.environ.get('USERNAME')
+    user= os.environ.get('USERNAME'),
     password= os.environ.get('PASSWORD'),
     warehouse='COMPUTE_WH',
     database='DEMO_DB',
