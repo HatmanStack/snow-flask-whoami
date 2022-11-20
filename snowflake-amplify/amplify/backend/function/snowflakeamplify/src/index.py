@@ -1,0 +1,67 @@
++ import awsgi
+from flask_cors import CORS
+from flask import Flask, jsonify, request, render_template
+from snowflake import connector
+import pandas as pd
+import os
+
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def homepage():
+    cur = cnx.cursor().execute("Select Name, count(*) from ADDRESSES group by NAME;")
+    data4charts=pd.DataFrame(cur.fetchall(), columns=['NAME','vote'])
+    data4chartsJSON = data4charts.to_json(orient='records')
+    return render_template('charts.html', data4chartsJSON=data4chartsJSON)
+
+@app.route('/Submit')
+def submitpage():
+    return render_template('submit.html')
+
+@app.route('/HardData')
+def hardData():
+    dfhtml = updateRows().to_html()
+    return render_template('index.html', dfhtml=dfhtml)
+
+@app.route('/thanks4submit', methods=["POST"])
+def thanks4submit():
+    address = request.form.get("cname")
+    name = request.form.get("uname")
+    insertRow(address, name)
+    return render_template('thanks4submit.html',
+                           colorname=address,
+                           username=name)
+    
+#snowflake
+cnx = connector.connect(
+    account='wn59980.us-central1.gcp',
+    user= os.environ.get('USERNAME'),
+    password= os.environ.get('PASSWORD'),
+    warehouse='COMPUTE_WH',
+    database='DEMO_DB',
+    schema='PUBLIC',
+    role='SYSADMIN'
+)
+
+def insertRow(address, name):
+    cur = cnx.cursor()
+    updateString = "INSERT INTO ADDRESSES(ADDRESS, NAME) VALUES ('{}', '{}')".format(address, name)
+    print(updateString)
+    cur.execute(updateString)
+
+def updateRows():
+    cur = cnx.cursor()
+    cur.execute("SELECT * FROM ADDRESSES")
+    rows = pd.DataFrame(cur.fetchall(),columns=['ADDRESS', 'NAME'])
+    return rows
+
+
+CORS(app)
+if __name__ == '__main__':
+ app.run()
+
+
+def handler(event, context):
+    return awsgi.response(app, event, context)

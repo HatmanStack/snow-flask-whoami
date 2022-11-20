@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-snowflakeamplify-dev-102916-authRole",
+      "UnauthRoleArn": "arn:aws:iam::631094035453:role/amplify-snowflakeamplify-dev-102916-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::631094035453:role/amplify-snowflakeamplify-dev-102916-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-snowflakeamplify-dev-102916-deployment",
+      "UnauthRoleName": "amplify-snowflakeamplify-dev-102916-unauthRole",
+      "StackName": "amplify-snowflakeamplify-dev-102916",
+      "StackId": "arn:aws:cloudformation:us-east-2:631094035453:stack/amplify-snowflakeamplify-dev-102916/d2ab1120-6114-11ed-96ff-02a3cff3dccc",
+      "AmplifyAppId": "d1t941ikl7h236"
+    },
+    "categories": {
+      "function": {
+        "snowflakeamplify": {
+          "username": "cgalliart",
+          "password": "BpoQdMDa5dSAVF",
+          "secretsPathAmplifyAppId": "d1t941ikl7h236",
+          "deploymentBucketName": "amplify-snowflakeamplify-dev-102916-deployment",
+          "s3Key": "amplify-builds/snowflakeamplify-75304f676d326b4a6d58-build.zip"
+        }
+      },
+      "api": {
+        "snowflakeamplify": {}
+      }
+    }
+  }
+}
