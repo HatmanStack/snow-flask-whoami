@@ -9,6 +9,7 @@ This repository contains an Application written using Flask and Vega-Lite charts
 ## Prerequisites
 * Python 3.x
 * Flask
+* Vega-Lite
 * Major Cloud Provider
 * Snowflake Database
 
