@@ -4,8 +4,6 @@ from snowflake import connector
 import pandas as pd
 import os
 
-
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -35,13 +33,13 @@ def thanks4submit():
     
 #snowflake
 cnx = connector.connect(
-    account='wn59980.us-central1.gcp',
-    user= os.environ.get('USERNAME'),
-    password= os.environ.get('PASSWORD'),
+    account='xw74276.central-us.azure',
+    user= 'cgalliart',
+    password= 'BpoQdMDa5dSAVF',
     warehouse='COMPUTE_WH',
     database='DEMO_DB',
     schema='PUBLIC',
-    role='SYSADMIN'
+    role='ACCOUNTADMIN'
 )
 
 
@@ -57,7 +55,7 @@ def updateRows():
     rows = pd.DataFrame(cur.fetchall(),columns=['ADDRESS', 'NAME'])
     return rows
 
-#PORT = int(os.getenv("PORT")) if os.getenv("PORT") else 8080
-#app.run(host="127.0.0.1", port = PORT, debug=True)
-if __name__ == '__main__':
-  app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+PORT = int(os.getenv("PORT")) if os.getenv("PORT") else 8080
+app.run(host="127.0.0.1", port = PORT, debug=True)
+#if __name__ == '__main__':
+#  app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))

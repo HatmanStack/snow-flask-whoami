@@ -1,5 +1,5 @@
 # Snowflake Flask App
-This repository contains an Application written using Flask and Vega-Lite charts hosted on the Major Cloud providers that displays Database information from a single Snowflake Database.
+This repository contains an Application written using Flask and Vega-Lite charts hosted on the Major Cloud providers that displays Database information from a single Snowflake Database. The data is Live so changes on one cloud provider affect all other providers.
 
 ## Clouds
 * GPC: https://snow-web-app-f3jmjyxrpq-uc.a.run.app/
