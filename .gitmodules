@@ -1,0 +1,3 @@
+[submodule "snow-flask-whoami-gpc"]
+	path = snow-flask-whoami-gpc
+	url = https://github.com/HatmanStack/snow-flask-whoami-gpc.git

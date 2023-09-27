@@ -2,7 +2,7 @@
 This repository contains an Application written using Flask and Vega-Lite charts hosted on the Major Cloud providers that displays Database information from a single Snowflake Database. The data is Live so changes on one cloud provider affect all other providers.
 
 ## Clouds
-* GPC: https://snow-web-app-f3jmjyxrpq-uc.a.run.app/
+* GPC: https://snow-flask-whoami-gpc-k6cy6vf2la-uc.a.run.app/
 * AWS: https://snowflake-eb.gemenielabs.com/
 * Azure: https://snowflake-azure.azurewebsites.net/
 
