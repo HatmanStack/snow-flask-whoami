@@ -3,7 +3,7 @@ This repository contains an Application written using Flask and Vega-Lite charts
 
 ## Clouds
 * GPC: https://snow-flask-whoami-gpc-k6cy6vf2la-uc.a.run.app/
-* AWS: https://snowflake-eb.gemenielabs.com/
+* AWS: https://jrjo3dsku7.execute-api.us-west-1.amazonaws.com/dev
 * Azure: https://snowflake-azure.azurewebsites.net/
 
 ## Prerequisites
