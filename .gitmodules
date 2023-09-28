@@ -1,3 +1,9 @@
 [submodule "snow-flask-whoami-gpc"]
 	path = snow-flask-whoami-gpc
 	url = https://github.com/HatmanStack/snow-flask-whoami-gpc.git
+[submodule "main/origin"]
+	path = snow-flask-whoami-aws
+	url = https://github.com/HatmanStack/snow-flask-whoami-aws.git
+[submodule "snow-flask-whoami-aws"]
+	path = snow-flask-whoami-aws
+	url = https://github.com/HatmanStack/snow-flask-whoami-aws.git
