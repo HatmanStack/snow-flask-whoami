@@ -1,6 +1,1 @@
-
-# Elastic Beanstalk Files
-/snowflake-eb/.elasticbeanstalk/*
-/snowflake-eb/.elasticbeanstalk/*.cfg.yml
-/snowflake-eb/.elasticbeanstalk/*.global.yml
-/snowflake-amplify/node_modules
+.\gitignore
