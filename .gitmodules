@@ -7,3 +7,6 @@
 [submodule "snow-flask-whoami-aws"]
 	path = snow-flask-whoami-aws
 	url = https://github.com/HatmanStack/snow-flask-whoami-aws.git
+[submodule "snow-flask-whoami-az"]
+	path = snow-flask-whoami-az
+	url = https://github.com/HatmanStack/snow-flask-whoami-az.git

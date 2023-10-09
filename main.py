@@ -1,6 +1,8 @@
 
 from flask import Flask, render_template, request
 from snowflake import connector
+import waitress
+import gunicorn
 import pandas as pd
 import os
 
@@ -33,14 +35,15 @@ def thanks4submit():
     
 #snowflake
 cnx = connector.connect(
-    account='wn59980.us-central1.gcp',
-    user= os.environ.get('SNOWFLAKE_USERNAME'),
-    password= os.environ.get('SNOWFLAKE_PASSWORD'),
+    account= os.environ.get('REGION'),
+    user= os.environ.get('USERNAME'),
+    password= os.environ.get('PASSWORD'),
     warehouse='COMPUTE_WH',
     database='DEMO_DB',
     schema='PUBLIC',
-    role='SYSADMIN'
+    role='ACCOUNTADMIN'
 )
+
 
 def insertRow(address, name):
     cur = cnx.cursor()
@@ -54,5 +57,5 @@ def updateRows():
     rows = pd.DataFrame(cur.fetchall(),columns=['ADDRESS', 'NAME'])
     return rows
 
-if __name__ == '__main__':
-  app.run()
+
+waitress.serve(app, listen='0.0.0.0:8000')

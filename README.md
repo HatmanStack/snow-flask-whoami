@@ -14,13 +14,27 @@ This repository contains an Application written using Flask and Vega-Lite charts
 * Snowflake Database
 
 ## Installation
-* Clone the repository
-* Install the prerequisites
-* Set up the Major Cloud Provider
-* Connect the Snowflake Database
-* Run the Flask application
 
-## Usage
-Once the Flask application is running, you can access the Database information by navigating to the URL of the application.
+Replace `USERNAME`. `PASSWORD`, `REGION` with your snowflake credentials.
+
+```
+git clone https://github.com/HatmanStack/snow-flask-whoami.git
+cd snow-flask-whoami
+python -m venv venv
+
+Windows:
+venv/scripts/activate
+
+Linux/Mac:
+source /venv/bin/activate
+
+cd ../..
+pip install -r requirements.txt
+python main.py
+```
+
+If you're running Linux change from waitress to gunicorn.  Replace `waitress.serve(app, listen='0.0.0.0:8000')` with `gunicorn.run(app, host='0.0.0.0', port=8000)`, or remove waitress and run gunicorn from the command line with: `gunicorn -w 2 main:app`
+
+
 
 
