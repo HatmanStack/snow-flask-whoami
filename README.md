@@ -20,6 +20,16 @@ Replace `USERNAME`. `PASSWORD`, `REGION` with your snowflake credentials.
 ```
 git clone https://github.com/HatmanStack/snow-flask-whoami.git
 cd snow-flask-whoami
+```
+
+For all Submodules
+
+```
+git submodule init
+git submodule update --recursive --remote
+```
+
+```
 python -m venv venv
 
 Windows:
