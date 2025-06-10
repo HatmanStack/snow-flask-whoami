@@ -1,7 +1,6 @@
+import azure.functions as func
 from flask import Flask, render_template, request
 from snowflake import connector
-import waitress
-import gunicorn
 import pandas as pd
 import os
 import json
@@ -63,5 +62,7 @@ def updateRows():
     rows = pd.DataFrame(cur.fetchall(), columns=['ADDRESS', 'NAME'])
     return rows
 
-if __name__ == "__main__":
-    waitress.serve(app, listen='0.0.0.0:8000')
+# Azure Functions HTTP trigger handler
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    """Each request is redirected to the WSGI handler."""
+    return func.WsgiMiddleware(app).handle(req)
