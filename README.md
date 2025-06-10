@@ -1,71 +1,130 @@
-# Snowflake Flask App
+# Snowflake Flask Multi-Cloud Application
 
-This repository contains an Application written using Flask and Vega-Lite charts hosted on the Major Cloud providers that displays Database information from a single Snowflake Database. The data is Live so changes on one cloud provider affect all other providers. The application now features enhanced Three.js visualizations for a more interactive experience.
+A full-stack Flask application with interactive data visualizations that displays live database information from Snowflake across three major cloud platforms. Features modern Three.js animations and responsive design with real-time data synchronization.
 
-## Clouds
-* GPC: https://snow-flask-whoami-gpc-k6cy6vf2la-uc.a.run.app/
-* AWS: https://akxv1pi5yc.execute-api.us-west-1.amazonaws.com/dev
-* Azure: https://snow-flask-whoami-az.azurewebsites.net/Home
+## 🌐 Live Deployments
 
-## Enhanced Visualizations
+| Cloud Provider | Service | Live URL |
+|----------------|---------|----------|
+| **Google Cloud** | Cloud Run | https://snow-flask-whoami-gpc-k6cy6vf2la-uc.a.run.app/ |
+| **AWS** | Lambda + API Gateway | https://akxv1pi5yc.execute-api.us-west-1.amazonaws.com/dev |
+| **Azure** | Functions | https://snow-flask-whoami-az.azurewebsites.net/Home |
 
-### Homepage (/)
-The homepage features a dual-layer visualization:
-1. **Vega-Lite Chart**: A bar chart showing name counts from the Snowflake database
-2. **Three.js Background Animation**: A dynamic background with falling data sprites representing database entries
+## ✨ Features
 
-### HardData Page (/HardData)
-The HardData page has been completely overhauled with an interactive 3D visualization:
-1. **Interactive 3D Cards**: Each database record is represented as a 3D card in a Three.js scene
-2. **Drag Controls**: Users can click and drag cards to rearrange them in 3D space
-3. **Orbit Controls**: Users can rotate and zoom the camera to explore the data from different angles
+### Interactive Visualizations
+- **Homepage (`/`)**: Dual-layer visualization with Vega-Lite charts and Three.js background animations
+- **HardData Page (`/HardData`)**: Interactive 3D cards with drag controls and orbital camera navigation
+- **Real-time Data**: Live Snowflake database connectivity with instant updates across all cloud instances
 
-## Prerequisites
-* Python 3.x
-* Flask
-* Vega-Lite
-* Three.js
-* Major Cloud Provider
-* Snowflake Database
+### Technical Stack
+- **Backend**: Flask, Snowflake Python Connector
+- **Frontend**: Vega-Lite, Three.js, Responsive CSS
+- **Authentication**: RSA key-pair authentication with Snowflake
+- **Deployment**: Multi-cloud serverless architecture
 
-## Installation
+## 🚀 Quick Start
 
-Replace `USERNAME`. `PASSWORD`, `REGION` with your snowflake credentials.
+### Prerequisites
+- Python 3.9+
+- Snowflake account with database access
+- Cloud provider account (AWS/Azure/GCP)
 
-```
+### Local Development
+```bash
+# Clone repository with submodules
 git clone https://github.com/HatmanStack/snow-flask-whoami.git
 cd snow-flask-whoami
-```
-
-For all Submodules
-
-```
 git submodule init
 git submodule update --recursive --remote
-```
 
-```
+# Set up Python environment
 python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# venv\Scripts\activate   # Windows
 
-Windows:
-venv/scripts/activate
-
-Linux/Mac:
-source /venv/bin/activate
-
-cd ../..
+# Install dependencies
 pip install -r requirements.txt
+
+# Configure environment variables
+export USERNAME=your_snowflake_username
+export PASSWORD=your_rsa_secure_passphrase
+export REGION=your_snowflake_region
+
+# Run application
 python main.py
 ```
 
-If you're running Linux change from waitress to gunicorn.  Replace `waitress.serve(app, listen='0.0.0.0:8000')` with `gunicorn.run(app, host='0.0.0.0', port=8000)`, or remove waitress and run gunicorn from the command line with: `gunicorn -w 2 main:app`
+## 🔐 Snowflake Authentication Setup
 
-## Cloud-Specific Deployments
+This application uses RSA key-pair authentication for secure Snowflake connectivity:
 
-This repository contains three sub-modules, each configured for deployment to a specific cloud provider:
+1. **Generate encrypted private key:**
+   ```bash
+   openssl genrsa 2048 | openssl pkcs8 -topk8 -inform PEM -out rsa_key.p8 -v2 aes-256-cbc -passout pass:your-secure-passphrase
+   ```
 
-* **snow-flask-whoami-aws**: Configured for AWS Lambda with API Gateway
-* **snow-flask-whoami-azure**: Configured for Azure Functions
-* **snow-flask-whoami-gpc**: Configured for Google Cloud Run
+2. **Generate public key:**
+   ```bash
+   openssl rsa -in rsa_key.p8 -passin pass:your-secure-passphrase -pubout -out rsa_key.pub
+   ```
 
-Each sub-module contains its own README with specific deployment instructions.
+3. **Configure Snowflake user:**
+   ```sql
+   ALTER USER your_service_user SET RSA_PUBLIC_KEY = '<paste_public_key_content_here>';
+   ```
+
+4. **Include credentials in your connection configuration**
+
+## 🏗️ Cloud-Specific Deployments
+
+Each cloud deployment is contained in its own sub-module with specific configuration:
+
+| Sub-module | Target Platform | Architecture |
+|------------|----------------|--------------|
+| `snow-flask-whoami-aws/` | AWS Lambda + API Gateway | Serverless with SAM |
+| `snow-flask-whoami-az/` | Azure Functions | Serverless HTTP trigger |
+| `snow-flask-whoami-gpc/` | Google Cloud Run | Containerized serverless |
+
+### Deployment Quick Commands
+
+**AWS (SAM):**
+```bash
+cd snow-flask-whoami-aws/
+sam build && sam deploy --guided
+```
+
+**Azure (Functions Core Tools):**
+```bash
+cd snow-flask-whoami-az/
+func azure functionapp publish snow-flask-whoami-az
+```
+
+**GCP (Cloud Build):**
+```bash
+cd snow-flask-whoami-gpc/
+gcloud builds submit --config=cloudbuild.yaml .
+```
+
+## 🔧 Development Notes
+
+- **Linux users**: Replace `waitress` with `gunicorn` for better performance:
+  ```bash
+  gunicorn -w 2 main:app
+  ```
+- **Environment Variables**: All deployments require `USERNAME`, `PASSWORD`, and `REGION` configuration
+- **Data Synchronization**: Changes made through any cloud instance are immediately reflected across all deployments
+
+## 📁 Project Structure
+
+```
+snow-flask-whoami/
+├── main.py                     # Core Flask application
+├── templates/                  # Jinja2 templates
+├── static/                     # CSS, JS, Three.js assets
+├── snow-flask-whoami-aws/      # AWS Lambda deployment
+├── snow-flask-whoami-az/       # Azure Functions deployment
+└── snow-flask-whoami-gpc/      # Google Cloud Run deployment
+```
+
+For detailed deployment instructions, see the README in each sub-module directory.

@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request
 from snowflake import connector
 import waitress
-import gunicorn
 import pandas as pd
 import os
 import json
+import dotenv
+dotenv.load_dotenv()
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def homepage():
@@ -39,12 +41,13 @@ def thanks4submit():
     return render_template('thanks4submit.html',
                            colorname=address,
                            username=name)
-    
+#print(base64.b64encode(p_key).decode('utf-8'))
 # Snowflake connection
 cnx = connector.connect(
     account=os.environ.get('REGION'),
     user=os.environ.get('USERNAME'),
-    password=os.environ.get('PASSWORD'),
+    private_key_file='rsa_key.p8',
+    private_key_file_pwd=os.environ.get('PASSWORD'),
     warehouse='COMPUTE_WH',
     database='DEMO_DB',
     schema='PUBLIC',
