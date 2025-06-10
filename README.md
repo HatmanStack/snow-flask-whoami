@@ -7,7 +7,7 @@ A full-stack Flask application with interactive data visualizations that display
 | Cloud Provider | Service | Live URL |
 |----------------|---------|----------|
 | **Google Cloud** | Cloud Run | https://snow-flask-whoami-gpc-k6cy6vf2la-uc.a.run.app/ |
-| **AWS** | Lambda + API Gateway | https://akxv1pi5yc.execute-api.us-west-1.amazonaws.com/dev |
+| **AWS** | Lambda + API Gateway | https://efgl5d8ao9.execute-api.us-west-2.amazonaws.com/Prod |
 | **Azure** | Functions | https://snow-flask-whoami-az.azurewebsites.net/Home |
 
 ## ✨ Features
@@ -47,9 +47,9 @@ source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 
 # Configure environment variables
-export USERNAME=your_snowflake_username
-export PASSWORD=your_rsa_secure_passphrase
-export REGION=your_snowflake_region
+export SNOW_USERNAME=your_snowflake_username
+export SNOW_PASSWORD=your_rsa_secure_passphrase
+export SNOW_ACCOUNT=your_snowflake_account
 
 # Run application
 python main.py
