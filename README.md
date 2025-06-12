@@ -6,9 +6,9 @@ A full-stack Flask application with interactive data visualizations that display
 
 | Cloud Provider | Service | Live URL |
 |----------------|---------|----------|
-| **Google Cloud** | Cloud Run | https://snow-flask-whoami-gpc-k6cy6vf2la-uc.a.run.app/ |
+| **Google Cloud** | Cloud Run | https://snow-flask-whoami-gpc-357277717136.us-central1.run.app |
 | **AWS** | Lambda + API Gateway | https://efgl5d8ao9.execute-api.us-west-2.amazonaws.com/Prod |
-| **Azure** | Functions | https://snow-flask-whoami-az.azurewebsites.net/Home |
+| **Azure** | Functions | https://snow-flask-whoami-az.azurewebsites.net |
 
 ## ✨ Features
 
