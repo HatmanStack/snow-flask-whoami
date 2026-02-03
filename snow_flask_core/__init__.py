@@ -1,7 +1,9 @@
 """Snow Flask Core - shared functionality for snow-flask-whoami."""
 
+from typing import Any
 
-def __getattr__(name: str):
+
+def __getattr__(name: str) -> Any:
     """Lazy import to avoid requiring all dependencies at import time."""
     if name == "create_app":
         from snow_flask_core.app import create_app
