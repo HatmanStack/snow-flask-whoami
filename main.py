@@ -1,4 +1,5 @@
 """Local development entry point for snow-flask-whoami."""
+
 import dotenv
 import waitress
 
@@ -11,4 +12,4 @@ setup_logging()
 app = create_app()
 
 if __name__ == "__main__":
-    waitress.serve(app, listen='0.0.0.0:8000')
+    waitress.serve(app, listen="0.0.0.0:8000")

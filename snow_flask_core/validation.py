@@ -1,18 +1,19 @@
 """Input validation for snow-flask-whoami application."""
+
 import re
-from typing import Optional
 
 MAX_NAME_LENGTH = 100
 MAX_ADDRESS_LENGTH = 500
-SAFE_PATTERN = re.compile(r'^[\w\s\-\.\'\,\#]+$')
+SAFE_PATTERN = re.compile(r"^[\w\s\-\.\'\,\#]+$")
 
 
 class ValidationError(ValueError):
     """Raised when input validation fails."""
+
     pass
 
 
-def validate_name(name: Optional[str]) -> str:
+def validate_name(name: str | None) -> str:
     """Validate and sanitize a name input."""
     if not name or not name.strip():
         raise ValidationError("Name is required")
@@ -24,7 +25,7 @@ def validate_name(name: Optional[str]) -> str:
     return name
 
 
-def validate_address(address: Optional[str]) -> str:
+def validate_address(address: str | None) -> str:
     """Validate and sanitize an address input."""
     if not address or not address.strip():
         raise ValidationError("Address is required")
