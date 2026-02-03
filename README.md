@@ -2,6 +2,8 @@
 
 A full-stack Flask application with interactive data visualizations that displays live database information from Snowflake across three major cloud platforms. Features modern Three.js animations and responsive design with real-time data synchronization.
 
+** THIS REPO IS NO LONGER MAINTAINED **
+
 ## 🌐 Live Deployments
 
 | Cloud Provider | Service | Live URL |
